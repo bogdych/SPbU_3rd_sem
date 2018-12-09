@@ -1,21 +1,19 @@
-import java.util.concurrent.locks.ReentrantLock;
-
 public class Main {
     public static StringBuilder str = new StringBuilder();
-    public static ReentrantLock lock = new ReentrantLock();
+    public static Peterson lock = new Peterson();
 
     public static void main(String[] args) {
-        Adder add1 = new Adder("Hello!");
-        Adder add2 = new Adder("My name is Mark.");
-        Adder add3 = new Adder("What about you?");
+        Adder add1 = new Adder("Hello!", 1);
+        Adder add2 = new Adder("My name is Mark.", 2);
+        //Adder add3 = new Adder("What about you?", 3);
 
         Thread thread1 = new Thread(add1);
         Thread thread2 = new Thread(add2);
-        Thread thread3 = new Thread(add3);
+        //Thread thread3 = new Thread(add3);
 
         thread1.start();
         thread2.start();
-        thread3.start();
+        //thread3.start();
 
         try {
             thread1.join();
@@ -27,10 +25,10 @@ public class Main {
         }
         catch (InterruptedException e) {}
 
-        try {
+        /*try {
             thread3.join();
         }
-        catch (InterruptedException e) {}
+        catch (InterruptedException e) {}*/
 
         System.out.println(str.toString());
     }
