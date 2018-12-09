@@ -7,9 +7,15 @@ public class Adder implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < str.length(); i++) {
-            Main.str.append(str.charAt(i));
+        Main.lock.lock();
+        try {
+            for (int i = 0; i < str.length(); i++) {
+                Main.str.append(str.charAt(i));
+            }
+            Main.str.append(" ");
         }
-        Main.str.append(" ");
+        finally {
+            Main.lock.unlock();
+        }
     }
 }
