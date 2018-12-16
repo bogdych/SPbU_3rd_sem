@@ -34,6 +34,9 @@ public class Main {
         startPrefixScan();
         getResult();
         printResult(res);
+
+        int[] singleRes = singleThreadSum();
+        printResult(singleRes);
     }
 
     private static int[] getIntArr(String str, int length) {
@@ -94,5 +97,16 @@ public class Main {
          }
 
          return array;
+    }
+
+    private static int[] singleThreadSum() {
+        int carry = 0;
+        int[] array = new int[maxLength];
+        for (int i = 0; i < maxLength; i++) {
+            array[i] = (a[i] + b[i] + carry) % 10;
+            carry    = (a[i] + b[i] + carry) / 10;
+        }
+
+        return array;
     }
 }
