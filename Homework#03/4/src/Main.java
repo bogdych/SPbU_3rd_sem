@@ -13,6 +13,11 @@ public class Main {
         for (int i = 0; i < strLength; i++) {
             array[i] = str.charAt(i) == '(' ? 1 : -1;
         }
+
+        System.out.println(multithreadedBalance());
+    }
+
+    private static boolean multithreadedBalance() throws InterruptedException {
         prefixes = new int[THREADS];
         step = strLength / THREADS;
         threads = new Thread[THREADS - 1];
@@ -31,24 +36,12 @@ public class Main {
 
         startPrefixScan();
 
-        boolean flag = false;
         for (int i = 0; i < strLength; i++) {
             if (array[i] < 0) {
-                flag = true;
-                break;
+                return false;
             }
         }
-        if (flag) {
-            System.out.println("The parentheses aren't matching");
-        }
-        else {
-            if (array[strLength - 1] != 0) {
-                System.out.println("The parentheses aren't matching");
-            }
-            else {
-                System.out.println("The parentheses are matching");
-            }
-        }
+        return array[strLength - 1] == 0 ? true : false;
     }
 
     private static void startPrefixScan() throws InterruptedException {
@@ -69,5 +62,16 @@ public class Main {
         for (int i = 0; i < THREADS - 1; i++) {
             threads[i].join();
         }
+    }
+
+    private static boolean singlethreadedBalance() {
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+            if (sum < 0) {
+                return false;
+            }
+        }
+        return sum == 0 ? true : false;
     }
 }
