@@ -1,11 +1,9 @@
 import java.io.File;
-import java.util.concurrent.*;
 
 public class Main {
     private static int THREADS = 8;
     public static int max_depth = 2;
-    public static ThreadPoolExecutor pool;
-    //static ConcurrentSkipListSet<String> urls = new ConcurrentSkipListSet<>();
+    public static CustomThreadPool pool;
     public static CustomConcurrentStringList urls = new CustomConcurrentStringList();
     public static File resDir;
 
@@ -13,7 +11,7 @@ public class Main {
         if (createResFolder()) {
             String root = "https://timetable.spbu.ru/";
             urls.add(root);
-            pool = new ThreadPoolExecutor(THREADS, THREADS, Long.MAX_VALUE, TimeUnit.NANOSECONDS, new LinkedBlockingQueue<>());
+            pool = new CustomThreadPool(THREADS, new CustomTaskQueue());
             LinkTask task = new LinkTask(root, 1);
             pool.execute(task);
 
