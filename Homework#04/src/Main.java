@@ -3,9 +3,10 @@ import java.util.concurrent.*;
 
 public class Main {
     private static int THREADS = 8;
-    public static int max_depth = 100;
+    public static int max_depth = 2;
     public static ThreadPoolExecutor pool;
-    public static ConcurrentSkipListSet<String> urls = new ConcurrentSkipListSet<>();
+    //static ConcurrentSkipListSet<String> urls = new ConcurrentSkipListSet<>();
+    public static CustomConcurrentStringList urls = new CustomConcurrentStringList();
     public static File resDir;
 
     public static void main(String[] args){
