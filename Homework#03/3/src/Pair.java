@@ -1,6 +1,6 @@
 public class Pair {
-    public int a;
-    public int b;
+    public long a;
+    public long b;
 
     public Pair(int a, int b) {
         this.a = a;
