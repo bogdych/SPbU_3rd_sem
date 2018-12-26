@@ -9,19 +9,64 @@ public class Main {
     public static volatile Coordinates result;
     private static Thread[] threads;
     private static int step;
+    public static int MAX_THREADS = 4;
 
-    public static void main(String[] args) throws InterruptedException {
-        amountOfCommands = 4;
-        commands = new Command[amountOfCommands];
 
-        commands[0] = new Command(45, 40);
-        commands[1] = new Command(30, 50);
-        commands[2] = new Command(105, 40);
-        commands[3] = new Command(90, 20);
+    public static void main(String[] args){
+        amountOfCommands = 1000000;
+        commands = getCommands();
 
-        multithreadedVersion();
+        int amountOfTests = 20;
+        long[][] results = new long[MAX_THREADS + 1][amountOfTests];
 
-        System.out.println("Turtle's coordinates:\n\tx = " + result.x + "\n\ty = " + result.y);
+        for (int t = 1; t < MAX_THREADS + 1; t++) {
+            for (int i = 0; i < amountOfTests; i++) {
+                THREADS = (int) Math.pow(2, t - 1);
+                long startTime = System.nanoTime();
+                try {
+                    multithreadedVersion();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                long resTime = System.nanoTime() - startTime;
+                results[t][i] = resTime;
+            }
+        }
+
+        for (int i = 0; i < amountOfTests; i++) {
+            long startTime = System.nanoTime();
+            singlethreadedVersion();
+            long resTime = System.nanoTime() - startTime;
+            results[0][i] = resTime;
+        }
+
+        System.out.println("Average time (ms)");
+        System.out.println("Single-Threaded version - " + (getAverageTime(results[0]) / 1000000) + "," + (getAverageTime(results[0]) / 1000 % 1000));
+        System.out.println("Multithreaded version:");
+        for (int i = 1; i < MAX_THREADS + 1; i++) {
+            System.out.println(((int) (Math.pow(2, i - 1))) + ". " + (getAverageTime(results[i]) / 1000000) + "," + (getAverageTime(results[i]) / 1000 % 1000));
+        }
+
+
+       /* multithreadedVersion();
+
+        System.out.println("Turtle's coordinates:\n\tx = " + result.x + "\n\ty = " + result.y);*/
+    }
+
+    public static long getAverageTime(long[] array) {
+        long res = 0;
+        for (int i = 0; i < array.length; i++) {
+            res += array[i];
+        }
+        return res / array.length;
+    }
+
+    private static Command[] getCommands(){
+        Command[] res = new Command[amountOfCommands];
+        for (int i = 0; i < amountOfCommands; i++) {
+            res[i] = new Command(((int) (Math.floor(Math.random() * 360))), (int) (Math.floor(Math.random() * 100)));
+        }
+        return res;
     }
 
     private static void multithreadedVersion() throws InterruptedException{

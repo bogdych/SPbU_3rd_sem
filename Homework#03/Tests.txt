@@ -9,6 +9,7 @@ Multithreaded version:
 
 3.3
 Average time (ms)
+Average time (ms)
 Single-Threaded version - 31,988
 Multithreaded version:
 1. 113,915
@@ -17,6 +18,7 @@ Multithreaded version:
 8. 69,447
 
 3.4
+Average time (ms)
 Single-Threaded version - 0,1
 Multithreaded version:
 1. 118,918
@@ -24,3 +26,11 @@ Multithreaded version:
 4. 79,890
 8. 78,425
 
+3.5
+Average time (ms)
+Single-Threaded version - 91,731
+Multithreaded version:
+1. 103,617
+2. 85,747
+4. 78,754
+8. 69,945
