@@ -1,10 +1,12 @@
 public class CarryArrayMaker implements Runnable {
     private int left;
     private int right;
+    private int id;
 
-    public CarryArrayMaker (int left, int right) {
+    public CarryArrayMaker (int left, int right, int id) {
         this.left = left;
         this.right = right;
+        this.id = id;
     }
 
     @Override
@@ -23,6 +25,6 @@ public class CarryArrayMaker implements Runnable {
             carrySum = Operator.sum(carrySum, Main.carries[i]);
 
         }
-        Main.prefixes[left/Main.step] = carrySum;
+        Main.prefixes[id] = carrySum;
     }
 }
