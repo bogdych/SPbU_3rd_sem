@@ -1,9 +1,14 @@
+package filter;
+
 import java.awt.*;
 
 public class FilterThread extends Thread {
     private Filter filter;
     private int mode;
     private final int RADIUS = 5;
+
+    private final int HORIZONTAL_MODE = 0;
+    private final int VERTIACAL_MODE = 1;
 
     public FilterThread(Filter filter, int mode){
         this.filter = filter;
@@ -19,7 +24,7 @@ public class FilterThread extends Thread {
     }
 
     private void processLine(int line) {
-        if (mode == 0) {
+        if (mode == HORIZONTAL_MODE) {
             for (int i = 0; i < filter.input.getWidth(); i++) {
                 processPixel(i, line);
             }

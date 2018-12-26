@@ -1,0 +1,17 @@
+Benchmark                        Mode  Cnt      Score     Error  Units
+Test.HR_HorizontalMode_1Thread   avgt   10  11180,923 ± 138,971  ms/op
+Test.HR_HorizontalMode_2Threads  avgt   10   5785,534 ± 168,599  ms/op
+Test.HR_HorizontalMode_4Threads  avgt   10   3573,662 ± 147,027  ms/op
+Test.HR_HorizontalMode_8Threads  avgt   10   3234,529 ± 145,337  ms/op
+Test.HR_VerticalMode_1Thread     avgt   10  11523,164 ± 327,529  ms/op
+Test.HR_VerticalMode_2Threads    avgt   10   6471,119 ± 423,650  ms/op
+Test.HR_VerticalMode_4Threads    avgt   10   3764,834 ± 149,167  ms/op
+Test.HR_VerticalMode_8Threads    avgt   10   3184,889 ±  86,631  ms/op
+Test.MR_HorizontalMode_1Thread   avgt   10   2801,252 ± 126,336  ms/op
+Test.MR_HorizontalMode_2Threads  avgt   10   1453,502 ± 110,789  ms/op
+Test.MR_HorizontalMode_4Threads  avgt   10    958,131 ±  89,595  ms/op
+Test.MR_HorizontalMode_8Threads  avgt   10    737,322 ±  45,402  ms/op
+Test.MR_VerticalMode_1Thread     avgt   10   2820,957 ±  91,112  ms/op
+Test.MR_VerticalMode_2Threads    avgt   10   1513,647 ± 160,151  ms/op
+Test.MR_VerticalMode_4Threads    avgt   10   1033,839 ±  65,779  ms/op
+Test.MR_VerticalMode_8Threads    avgt   10    788,286 ± 130,676  ms/op
