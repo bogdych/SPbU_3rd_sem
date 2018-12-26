@@ -16,3 +16,11 @@ Multithreaded version:
 4. 69,777
 8. 69,447
 
+3.4
+Single-Threaded version - 0,1
+Multithreaded version:
+1. 118,918
+2. 81,720
+4. 79,890
+8. 78,425
+
