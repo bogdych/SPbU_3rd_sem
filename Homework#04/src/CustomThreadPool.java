@@ -56,11 +56,15 @@ public class CustomThreadPool implements Executor {
                     isActive = true;
                     elem.run();
                     lock.lock();
-                    if (Main.pool.getActiveCount() == 1 && queue.isEmpty()) {
-                        Main.pool.shutdown();
+                    try {
+                        if (Main.pool.getActiveCount() == 1 && queue.isEmpty()) {
+                            Main.pool.shutdown();
+                        }
+                        isActive = false;
                     }
-                    isActive = false;
-                    lock.unlock();
+                    finally {
+                        lock.unlock();
+                    }
                 }
             }
         }
