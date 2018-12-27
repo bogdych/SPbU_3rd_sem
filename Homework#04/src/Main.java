@@ -3,7 +3,7 @@ import java.util.concurrent.*;
 
 public class Main {
     private static int THREADS = 8;
-    public static int max_depth = 100;
+    public static int max_depth = 3;
     public static ThreadPoolExecutor pool;
     public static ConcurrentSkipListSet<String> urls = new ConcurrentSkipListSet<>();
     public static File resDir;

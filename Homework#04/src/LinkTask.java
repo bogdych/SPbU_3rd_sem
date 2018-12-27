@@ -31,11 +31,13 @@ public class LinkTask implements Runnable{
         if (depth < Main.max_depth) {
             for (Element link : links) {
                 String url = link.attr("abs:href");
-                if (!Main.urls.contains(url)) {
-                    Main.urls.add(url);
-                    Main.pool.execute(new LinkTask(url, depth + 1));
-                } else {
-                    System.out.println("Processing: url " + url + " already added to queue");
+                synchronized (Main.urls) {
+                    if (!Main.urls.contains(url)) {
+                        Main.urls.add(url);
+                        Main.pool.execute(new LinkTask(url, depth + 1));
+                    } else {
+                        System.out.println("Processing: url " + url + " already added to queue");
+                    }
                 }
             }
         }
